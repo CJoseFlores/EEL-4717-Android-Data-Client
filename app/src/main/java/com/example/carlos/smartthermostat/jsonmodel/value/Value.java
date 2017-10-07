@@ -17,4 +17,28 @@ public class Value {
     @SerializedName("timeStamp")
     @Expose
     private String timeStamp;
+
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Value{" +
+                "value=" + value +
+                ", timeStamp='" + timeStamp + '\'' +
+                '}';
+    }
 }
