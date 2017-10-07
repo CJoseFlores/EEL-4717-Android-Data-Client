@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //Use to set up Retrofit calls.
     private static final String TAG = "MainActivity";
     private static final String BASE_URL = "https://10.109.143.88:8443/";
+    OkHttpClient okHttpClient; //Used as a custom client that ignores SSL Certificate issues.
 
     //Used to grab information from the MongoDB server.
     TextView temp, pressure, humidity, timeStamp;
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         timeStamp = (TextView) findViewById(R.id.timeStamp);
         refreshButton = (Button) findViewById(R.id.bntRefresh);
 
+        //Creating the HTTP client that ignores SSL Certificates (since server is Self-Signed).
+        okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+
         //Replace the following with actual information grabbed from the server:
         temp.setText("Temperature:     " + Double.toString(0.0) + " C");
         pressure.setText("Pressure:            " + Double.toString(0.0) + " hPa");
@@ -59,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 //Create retrofit object to communicate with the webserver.
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
+                        .client(okHttpClient)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
