@@ -2,6 +2,7 @@ package com.example.carlos.smartthermostat;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carlos.smartthermostat.jsonmodel.SensorValues;
@@ -25,7 +26,6 @@ public class SensorQuery {
 
     //Used as a custom client that ignores SSL Certificate issues.
     private OkHttpClient okHttpClient;
-    private HashMap<String, String> sensorReadings; //Used to store: temp, pressure, humidity.
     private Context context;
 
     //Constants to use in the Retrofit calls.
@@ -40,24 +40,16 @@ public class SensorQuery {
     {
         //Creating the HTTP client that ignores SSL Certificates (since server is Self-Signed).
         okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
-
-        //Setting default values for the HashMap & timestamp.
-        sensorReadings.put("temp", "0.00");
-        sensorReadings.put("pressure", "0.00");
-        sensorReadings.put("humidity", "0.00");
-        sensorReadings.put("timeStamp","0000 00 00 00:00 AM");
-
-
         context = c; //Passing in the context from main.
     }
 
     /**
      * Sends the HTTP Server a GET request for the sensors, and returns a HashMap of desired values.
-     * @return The HashMap containing the temp, pressure, humidity and timeStamp.
      */
-    public HashMap<String, String> sensorInfoQuery()
+    public void sensorInfoQuery(final TextView temp, final TextView pressure,
+                                                   final TextView humidity, final TextView timeStamp)
     {
-        //Toast.makeText(context, "Refreshing...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Refreshing...", Toast.LENGTH_SHORT).show();
 
         //Create retrofit object to communicate with the webserver.
         Retrofit retrofit = new Retrofit.Builder()
@@ -92,15 +84,15 @@ public class SensorQuery {
 
                     if("Temperature".equals(sensorValues.get(i).getVariableName()))
                     {
-                        sensorReadings.put("temp", Double.toString(value));
+                        temp.setText("Temperature:     " + Double.toString(value) + " C");
                     }
                     else if ("Pressure".equals(sensorValues.get(i).getVariableName()))
                     {
-                        sensorReadings.put("pressure", Double.toString(value));
+                        pressure.setText("Pressure:            " + Double.toString(value) + " hPa");
                     }
                     else if("Humidity".equals(sensorValues.get(i).getVariableName()))
                     {
-                        sensorReadings.put("humidity", Double.toString(value));
+                        humidity.setText("Humidity:            " + Double.toString(value) + " %");
                     }
                     else
                     {
@@ -111,11 +103,12 @@ public class SensorQuery {
                     //Append the timestamp when on the final value.
                     if(i == sensorValues.size() - 1)
                     {
-                        sensorReadings.put("timeStamp",sensorValues.get(i).getValue().getTimeStamp());
+                        timeStamp.setText("Last Update:      " + sensorValues.get(i)
+                                .getValue().getTimeStamp());
                     }
                 }
 
-                //Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -123,7 +116,7 @@ public class SensorQuery {
             @Override
             public void onFailure(Call<SensorValues> call, Throwable t) {
                 Log.e(TAG, "onFailure: Something went wrong: " + t.getMessage() );
-                //Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -132,8 +125,6 @@ public class SensorQuery {
 //                pressure.setText("Pressure:            " + Double.toString(40.25) + " hPa");
 //                humidity.setText("Humidity:            " + Double.toString(40.10) + " %");
 //                timeStamp.setText("Last Update:      " + "09.30.2017 10:43 AM");
-
-        return sensorReadings;
     }
 
 }

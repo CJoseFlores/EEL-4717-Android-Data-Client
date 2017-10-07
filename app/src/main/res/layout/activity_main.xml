@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:textSize="20sp"
-        android:text="Temperature:     20.25" />
+        android:text="Temperature:     0.00 C" />
 
     <TextView
         android:id="@+id/pressure"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:textSize="20sp"
-        android:text="Pressure:            20.25" />
+        android:text="Pressure:            0.00 hPa" />
 
     <TextView
         android:id="@+id/humidity"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:textSize="20sp"
-        android:text="Humidity:            20.25" />
+        android:text="Humidity:            0.00%" />
 
     <TextView
         android:id="@+id/timeStamp"
@@ -39,7 +39,7 @@
         android:paddingTop="20dp"
         android:paddingBottom="10dp"
         android:textSize="20sp"
-        android:text="Last Update:      09.30.2017 10:43 AM" />
+        android:text="Last Update:      10.07.2017 12:00 AM" />
 
     <!--Use FrameLayout to force the "Refresh" button to the bottom.-->
     <FrameLayout

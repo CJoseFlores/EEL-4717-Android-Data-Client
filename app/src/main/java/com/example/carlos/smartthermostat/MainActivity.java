@@ -51,20 +51,7 @@ public class MainActivity extends AppCompatActivity {
         sensorQuery = new SensorQuery(MainActivity.this);
 
         //Performing one query to grab initial values.
-        queryResult = sensorQuery.sensorInfoQuery();
-
-        temp.setText("Temperature:     " + queryResult.get("temp") + " C");
-        pressure.setText("Pressure:            " + queryResult.get("pressure") + " hPa");
-        humidity.setText("Humidity:            " + queryResult.get("humidity") + " %");
-        timeStamp.setText("Last Update:      " + queryResult.get("timeStamp"));
-
-
-//        //Replace the following with actual information grabbed from the server:
-//        temp.setText("Temperature:     " + Double.toString(0.0) + " C");
-//        pressure.setText("Pressure:            " + Double.toString(0.0) + " hPa");
-//        humidity.setText("Humidity:            " + Double.toString(0.0) + " %");
-//        timeStamp.setText("Last Update:      " + "10.07.2017 12:00 AM");
-
+        sensorQuery.sensorInfoQuery(temp, pressure, humidity, timeStamp);
 
         //Query the MongoDB and parse information to the TextView objects.
         refreshButton.setOnClickListener(new View.OnClickListener()
@@ -72,12 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                queryResult = sensorQuery.sensorInfoQuery();
-
-                temp.setText("Temperature:     " + queryResult.get("temp") + " C");
-                pressure.setText("Pressure:            " + queryResult.get("pressure") + " hPa");
-                humidity.setText("Humidity:            " + queryResult.get("humidity") + " %");
-                timeStamp.setText("Last Update:      " + queryResult.get("timeStamp"));
+                sensorQuery.sensorInfoQuery(temp, pressure, humidity, timeStamp);
             }
         });
 
