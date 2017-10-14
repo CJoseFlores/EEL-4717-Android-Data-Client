@@ -50,7 +50,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/guideline4"
+                app:layout_constraintRight_toLeftOf="@+id/pressureGuideLine"
                 app:layout_constraintTop_toBottomOf="@+id/pressure_text"
                 app:layout_constraintVertical_bias="0.35000002" />
 
@@ -92,7 +92,7 @@
                 app:srcCompat="@drawable/atmospheric_pressure_512" />
 
             <android.support.constraint.Guideline
-                android:id="@+id/guideline4"
+                android:id="@+id/pressureGuideLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -146,7 +146,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/guideline4"
+                app:layout_constraintRight_toLeftOf="@+id/humidityGuideLine"
                 app:layout_constraintTop_toBottomOf="@+id/humidity_text"
                 app:layout_constraintVertical_bias="0.35000002" />
 
@@ -188,7 +188,7 @@
                 app:srcCompat="@drawable/thermostat_humidity_icon" />
 
             <android.support.constraint.Guideline
-                android:id="@+id/guideline4"
+                android:id="@+id/humidityGuideLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -231,7 +231,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/guideline4"
+                app:layout_constraintRight_toLeftOf="@+id/tempGuideLine"
                 app:layout_constraintTop_toBottomOf="@+id/temp_text"
                 app:layout_constraintVertical_bias="0.35000002" />
 
@@ -273,7 +273,7 @@
                 app:srcCompat="@drawable/temperature1600" />
 
             <android.support.constraint.Guideline
-                android:id="@+id/guideline4"
+                android:id="@+id/tempGuideLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
