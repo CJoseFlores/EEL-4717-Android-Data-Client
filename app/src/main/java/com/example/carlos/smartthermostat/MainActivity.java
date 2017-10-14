@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         temp = (TextView) findViewById(R.id.temp);
         pressure = (TextView) findViewById(R.id.pressure);
         humidity = (TextView) findViewById(R.id.humidity);
-        timeStamp = (TextView) findViewById(R.id.timeStamp);
+        timeStamp = (TextView) findViewById(R.id.temp_TimeStamp);
         refreshButton = (Button) findViewById(R.id.bntRefresh);
 
         //Creating a SensorQuery object
