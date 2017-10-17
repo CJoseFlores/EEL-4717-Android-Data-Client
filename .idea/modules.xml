@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EEL-4717-Android-Data-Client.iml" filepath="$PROJECT_DIR$/EEL-4717-Android-Data-Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/SmartThermostat.iml" filepath="$PROJECT_DIR$/SmartThermostat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
