@@ -29,7 +29,7 @@ public class SensorQuery {
 
     //Constants to use in the Retrofit calls.
     private static final String TAG = "MainActivity";
-    private static final String BASE_URL = "http://b00f76d3.ngrok.io/";
+    private static final String BASE_URL = "http://ffe7e972.ngrok.io/";
 
     /**
      * Constructs a SensorQuery and sets needed parameters for HTTP GET Requests.
@@ -46,7 +46,8 @@ public class SensorQuery {
      * Sends the HTTP Server a GET request for the sensors, and returns a HashMap of desired values.
      */
     public void sensorInfoQuery(final TextView temp, final TextView pressure,
-                                                   final TextView humidity, final TextView timeStamp)
+                                                   final TextView humidity, final TextView timeStamp,
+                                                    final TextView timeStamp2, final TextView timeStamp3)
     {
         Toast.makeText(context, "Refreshing...", Toast.LENGTH_SHORT).show();
 
@@ -103,6 +104,10 @@ public class SensorQuery {
                     if(i == sensorValues.size() - 1)
                     {
                         timeStamp.setText("Last Update:      " + sensorValues.get(i)
+                                .getTimeStamp());
+                        timeStamp2.setText("Last Update:      " + sensorValues.get(i)
+                                .getTimeStamp());
+                        timeStamp3.setText("Last Update:      " + sensorValues.get(i)
                                 .getTimeStamp());
                     }
                 }
