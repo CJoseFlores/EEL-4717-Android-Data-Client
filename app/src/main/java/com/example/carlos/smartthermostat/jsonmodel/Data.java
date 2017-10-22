@@ -1,6 +1,5 @@
 package com.example.carlos.smartthermostat.jsonmodel;
 
-import com.example.carlos.smartthermostat.jsonmodel.value.Value;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -9,15 +8,19 @@ import com.google.gson.annotations.SerializedName;
  *
  */
 
-public class Values {
+public class Data {
 
     @SerializedName("variableName")
     @Expose
     private String variableName;
 
+    @SerializedName("timeStamp")
+    @Expose
+    private String timeStamp;
+
     @SerializedName("value")
     @Expose
-    private Value value;
+    private Double value;
 
     public String getVariableName() {
         return variableName;
@@ -27,18 +30,27 @@ public class Values {
         this.variableName = variableName;
     }
 
-    public Value getValue() {
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(Value value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
     @Override
     public String toString() {
-        return "Values{" +
+        return "Data{" +
                 "variableName='" + variableName + '\'' +
+                ", timeStamp='" + timeStamp + '\'' +
                 ", value=" + value +
                 '}';
     }

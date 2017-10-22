@@ -6,10 +6,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.carlos.smartthermostat.jsonmodel.SensorValues;
-import com.example.carlos.smartthermostat.jsonmodel.Values;
+import com.example.carlos.smartthermostat.jsonmodel.Data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -30,7 +29,7 @@ public class SensorQuery {
 
     //Constants to use in the Retrofit calls.
     private static final String TAG = "MainActivity";
-    private static final String BASE_URL = "https://10.109.143.88:8443/";
+    private static final String BASE_URL = "http://b00f76d3.ngrok.io/";
 
     /**
      * Constructs a SensorQuery and sets needed parameters for HTTP GET Requests.
@@ -39,7 +38,7 @@ public class SensorQuery {
     public SensorQuery(Context c)
     {
         //Creating the HTTP client that ignores SSL Certificates (since server is Self-Signed).
-        okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        //okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
         context = c; //Passing in the context from main.
     }
 
@@ -54,13 +53,13 @@ public class SensorQuery {
         //Create retrofit object to communicate with the webserver.
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(okHttpClient)
+                //.client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         //Creating a sensorData interface and making a Call with SensorValues.
         SensorData sensorData = retrofit.create(SensorData.class);
-        Call<SensorValues> call = sensorData.getSensorValues("5160328");
+        Call<SensorValues> call = sensorData.getSensorValues();
 
         //Create an enqueue to make the call asynchronous to free up the GUI.
         call.enqueue(new Callback<SensorValues>() {
@@ -71,7 +70,7 @@ public class SensorQuery {
 
                 //Grabbing the list of : "values" from the JSON, and making a temp value var
                 //to hold the actual numerical value.
-                ArrayList<Values> sensorValues = response.body().getValues();
+                ArrayList<Data> sensorValues = response.body().getData();
                 Double value;
 
                         /* Iterrating through each value to check if it is a temp, pressure,
@@ -80,19 +79,19 @@ public class SensorQuery {
                 for(int i=0; i < sensorValues.size(); i++)
                 {
                     //Grabing the value to later parse into temp, humidity, or pressure.
-                    value = sensorValues.get(i).getValue().getValue();
+                    value = sensorValues.get(i).getValue();
 
                     if("Temperature".equals(sensorValues.get(i).getVariableName()))
                     {
-                        temp.setText("Temperature:     " + Double.toString(value) + " C");
+                        temp.setText(Double.toString(value) + " C");
                     }
                     else if ("Pressure".equals(sensorValues.get(i).getVariableName()))
                     {
-                        pressure.setText("Pressure:            " + Double.toString(value) + " hPa");
+                        pressure.setText(Double.toString(value) + " hPa");
                     }
                     else if("Humidity".equals(sensorValues.get(i).getVariableName()))
                     {
-                        humidity.setText("Humidity:            " + Double.toString(value) + " %");
+                        humidity.setText(Double.toString(value) + " %");
                     }
                     else
                     {
@@ -104,7 +103,7 @@ public class SensorQuery {
                     if(i == sensorValues.size() - 1)
                     {
                         timeStamp.setText("Last Update:      " + sensorValues.get(i)
-                                .getValue().getTimeStamp());
+                                .getTimeStamp());
                     }
                 }
 

@@ -12,48 +12,22 @@ import java.util.ArrayList;
 
 public class SensorValues {
 
-    @SerializedName("requestResult")
+    @SerializedName("data")
     @Expose
-    private String requestResult;
+    private ArrayList<Data> data;
 
-    @SerializedName("values")
-    @Expose
-    private ArrayList<Values> values;
-
-    @SerializedName("pantherId")
-    @Expose
-    private Double pantherId ;
-
-    public String getRequestResult() {
-        return requestResult;
+    public ArrayList<Data> getData() {
+        return data;
     }
 
-    public void setRequestResult(String requestResult) {
-        this.requestResult = requestResult;
-    }
-
-    public ArrayList<Values> getValues() {
-        return values;
-    }
-
-    public void setValues(ArrayList<Values> values) {
-        this.values = values;
-    }
-
-    public Double getPantherId() {
-        return pantherId;
-    }
-
-    public void setPantherId(Double pantherId) {
-        this.pantherId = pantherId;
+    public void setData(ArrayList<Data> data) {
+        this.data = data;
     }
 
     @Override
     public String toString() {
         return "SensorValues{" +
-                "requestResult='" + requestResult + '\'' +
-                ", values=" + values +
-                ", pantherId=" + pantherId +
+                "data=" + data +
                 '}';
     }
 }

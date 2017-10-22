@@ -13,6 +13,6 @@ import retrofit2.http.Path;
 
 public interface SensorData {
 
-    @GET("getsensorvalues/{panther-id}")
-    Call<SensorValues> getSensorValues(@Path("panther-id") String pantherId);
+    @GET("getsensorvalues")
+    Call<SensorValues> getSensorValues();
 }
